@@ -1,0 +1,12 @@
+apiVersion: gateway.k8s.aws/v1beta1
+kind: LoadBalancerConfiguration
+metadata:
+  name: ${APP_NAME}-lbconfig
+  namespace: ${NAMESPACE}
+spec:
+  scheme: internet-facing
+  ipAddressType: ipv4
+  listenerConfigurations:
+  - protocolPort: HTTPS:443
+    defaultCertificate: ${ACM_CERT_ARN}
+    sslPolicy: ELBSecurityPolicy-TLS13-1-2-2021-06
